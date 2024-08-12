@@ -4,7 +4,7 @@ import Ticket from "../models/ticketModel.js";
 export const closeTicket = async (req, res) => {
   try {
     const { id } = req.params;
-    const status = "closed";
+    const status = "Closed";
 
     // Find the ticket by ID and update its fields
     const updatedTicket = await Ticket.findByIdAndUpdate(
