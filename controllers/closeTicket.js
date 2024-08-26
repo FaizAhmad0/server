@@ -1,4 +1,3 @@
-// controllers/ticketController.js
 import Ticket from "../models/ticketModel.js";
 
 export const closeTicket = async (req, res) => {

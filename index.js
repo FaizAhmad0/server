@@ -6,7 +6,7 @@ import userRoutes from "./routes/userRoutes.js";
 import dotenv from "dotenv";
 import bodyParser from "body-parser";
 import contactRoutes from "./routes/contactRoutes.js";
-// import uploadRoutes from "./routes/uploadRouter.js";
+import uploadRoutes from "./routes/uploadRouter.js";
 import supportRoutes from "./routes/supportRoutes.js";
 import middleware from "./middleware/authMiddleware.js";
 
@@ -14,7 +14,12 @@ dotenv.config();
 
 const app = express();
 app.use(express.json());
-app.use(cors());
+app.use(
+  cors({
+    origin: "http://localhost:3000",
+    credentials: true,
+  })
+);
 app.use(bodyParser.json());
 
 app.use("/test", middleware, (req, res) => {
@@ -23,12 +28,8 @@ app.use("/test", middleware, (req, res) => {
 app.use("/api/managers", managerRoutes);
 app.use("/api/users", userRoutes);
 app.use("/api/contact", contactRoutes);
-// app.use("/api/upload", uploadRoutes);
+app.use("/api/upload", uploadRoutes);
 const PORT = process.env.PORT || 5000;
-
-app.use("/faiz", (req, res) => {
-  res.send("fdfdfdsf");
-});
 
 app.get("/data", middleware, async (req, res) => {
   const user = req.user;
