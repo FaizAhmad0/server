@@ -6,6 +6,7 @@ const managerSchema = new Schema({
   name: {
     type: String,
     default: "",
+    unique: true,
   },
   date: {
     type: Date,
